@@ -22,3 +22,15 @@ node cli.js list
 - Express.js
 - HTML/CSS/JS
 EOF
+
+## Ì∫Ä Progression
+- [x] ‚úÖ Structure de base
+- [ ] Ì¥Ñ CLI fonctionnel
+- [ ] Ì¥Ñ Base de donn√©es
+- [ ] Ì¥Ñ Interface web
+
+## Ì≥ä Semaine actuelle : 1/4
+**Focus** : Git, Linux, Bases de donn√©es
+
+---
+*Projet r√©alis√© dans le cadre de ma formation alternant d√©veloppement web*
