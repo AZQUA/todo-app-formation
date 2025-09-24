@@ -1,0 +1,13 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Application TodoList - Formation Alternant",
+  "main": "cli.js",
+  "scripts": {
+    "start": "node cli.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["todo", "cli", "formation"],
+  "author": "Ton Nom",
+  "license": "MIT"
+}
