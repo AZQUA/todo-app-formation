@@ -7,7 +7,17 @@
     "start": "node cli.js",
     "dev": "nodemon server.js"
   },
-  "keywords": ["todo", "cli", "formation"],
+  "keywords": [
+    "todo",
+    "cli",
+    "formation"
+  ],
   "author": "Ton Nom",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
 }
