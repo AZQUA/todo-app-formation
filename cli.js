@@ -1,14 +1,100 @@
-#!/usr/bin/env node
+const { Command } = require('commander');
+const { Pool } = require('pg');
+const path = require('path');
 
-// ��� TodoList CLI - Version de base
-// À développer pendant la formation !
+// Config connexion PostgreSQL (adapte host/user/password si besoin)
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'todos',
+  password: '',  // Laisse vide si pas de mot de passe, ou mets le tien
+  port: 5432,
+});
 
-console.log("��� TodoList CLI - Formation Alternant");
-console.log("Version actuelle : Structure de base");
-console.log("");
-console.log("Commandes prévues :");
-console.log("- node cli.js add 'Ma tâche'");
-console.log("- node cli.js list");
-console.log("- node cli.js done 1");
-console.log("");
-console.log("⏳ En cours de développement...");
+const program = new Command();
+
+// Créer la table si elle n'existe pas
+async function initDB() {
+  try {
+    const client = await pool.connect();
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS todos (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        completed BOOLEAN DEFAULT false,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    client.release();
+    console.log('DB initialisée.');
+  } catch (err) {
+    console.error('Erreur init DB:', err);
+    process.exit(1);
+  }
+}
+
+// Ajouter une tâche
+async function addTask(title) {
+  await initDB();
+  try {
+    const res = await pool.query('INSERT INTO todos (title) VALUES ($1) RETURNING id', [title]);
+    console.log(`Tâche "${title}" ajoutée (ID: ${res.rows[0].id})`);
+  } catch (err) {
+    console.error('Erreur ajout:', err);
+  }
+}
+
+// Lister les tâches
+async function listTasks() {
+  await initDB();
+  try {
+    const res = await pool.query('SELECT * FROM todos ORDER BY id');
+    if (res.rows.length === 0) {
+      console.log('Aucune tâche !');
+    } else {
+      res.rows.forEach(row => {
+        const status = row.completed ? '[✓]' : '[ ]';
+        console.log(`${status} ${row.id}: ${row.title}`);
+      });
+    }
+  } catch (err) {
+    console.error('Erreur list:', err);
+  }
+}
+
+// Marquer comme done
+async function doneTask(id) {
+  await initDB();
+  try {
+    const res = await pool.query('UPDATE todos SET completed = true WHERE id = $1 RETURNING *', [id]);
+    if (res.rowCount === 0) {
+      console.log(`Tâche ${id} non trouvée.`);
+    } else {
+      console.log(`Tâche ${id} marquée comme faite.`);
+    }
+  } catch (err) {
+    console.error('Erreur done:', err);
+  }
+}
+
+// Fermer pool à la fin
+process.on('exit', async () => {
+  await pool.end();
+});
+
+program
+  .command('add <title>')
+  .description('Ajouter une tâche')
+  .action(addTask);
+
+program
+  .command('list')
+  .description('Lister les tâches')
+  .action(listTasks);
+
+program
+  .command('done <id>')
+  .description('Marquer une tâche comme faite')
+  .action(doneTask);
+
+program.parse(process.argv);
