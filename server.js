@@ -4,18 +4,18 @@ const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const path = require('path');
 
+const pool = new Pool({
+    user: process.env.PGUSER || 'postgres',
+    host: process.env.PGHOST || 'localhost',
+    database: process.env.PGDATABASE || 'todos',
+    password: process.env.PGPASSWORD || 'Azqua_30',
+    port: process.env.PGPORT || 5432
+});
 
 const app = express();
 const PORT = 3000;
 
 // Config Pool PostgreSQL (adapte password si tu as changé)
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'todos',
-  password: 'Azqua_30',  // Ton mot de passe PG !
-  port: 5432,
-});
 
 // Middleware
 app.use(cors());
