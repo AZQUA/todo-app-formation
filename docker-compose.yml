@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:  # Container Node/Express (ton server.js)
+    build: .  # Utilise le Dockerfile local
+    ports:
+      - "3000:3000"  # Accès web depuis hôte
+    environment:
+      - PGHOST=db  # Pointe vers le container DB
+      - PGDATABASE=todos
+      - PGUSER=postgres
+      - PGPASSWORD=postgres  # Mot de passe pour Docker (simple)
+      - PGPORT=5432
+    depends_on:
+      - db  # Démarre après la DB
+    restart: unless-stopped
+
+  db:  # Container PostgreSQL
+    image: postgres:15-alpine  # Image officielle légère
+    environment:
+      - POSTGRES_DB=todos  # Crée auto la base "todos"
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres  # Même que dans app
+    ports:
+      - "5433:5432"  # Accès DB depuis hôte (sur port 5433 pour éviter conflit local)
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # Persistence des données
+    restart: unless-stopped
+
+volumes:
+  pgdata:  # Volume nomé pour stocker DB sur disque hôte
