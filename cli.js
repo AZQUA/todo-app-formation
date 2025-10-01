@@ -4,11 +4,11 @@ const path = require('path');
 
 // Config connexion PostgreSQL (adapte host/user/password si besoin)
 const pool = new Pool({
-    user: process.env.PGUSER || 'postgres',
-    host: process.env.PGHOST || 'localhost',
-    database: process.env.PGDATABASE || 'todos',
-    password: process.env.PGPASSWORD || 'Azqua_30',
-    port: process.env.PGPORT || 5432
+  user: process.env.PGUSER || 'postgres',
+  host: process.env.PGHOST || 'localhost',  // Docker: 'db', local: 'localhost'
+  database: process.env.PGDATABASE || 'todos',
+  password: process.env.PGPASSWORD || 'Azqua_30',  // Local: 'password', Docker: 'postgres'
+  port: process.env.PGPORT || 5432,
 });
 
 const program = new Command();

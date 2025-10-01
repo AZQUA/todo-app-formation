@@ -1,5 +1,5 @@
 {
-  "name": "todo-app",
+  "name": "todo-app-formation",
   "version": "1.0.0",
   "description": "Application TodoList - Formation Alternant",
   "main": "cli.js",
@@ -16,8 +16,10 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^2.2.0",
+    "commander": "^14.0.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "readline-sync": "^1.4.10"
   }
 }
