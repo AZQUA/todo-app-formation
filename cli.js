@@ -7,7 +7,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'todos',
-  password: '',  // Laisse vide si pas de mot de passe, ou mets le tien
+  password: 'Azqua_30',  // Laisse vide si pas de mot de passe, ou mets le tien
   port: 5432,
 });
 
