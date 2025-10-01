@@ -23,14 +23,19 @@ node cli.js list
 - HTML/CSS/JS
 EOF
 
-## íº€ Progression
-- [x] âœ… Structure de base
-- [ ] í´„ CLI fonctionnel
-- [ ] í´„ Base de donnÃ©es
-- [ ] í´„ Interface web
+## CLI (Terminal)
+- Local : `node cli.js add "TÃ¢che"` | `list` | `done 1` | `delete 1`
+- Docker : `docker-compose exec app node cli.js list`
+Utilise Commander.js pour parsing robuste + confirmation delete.
 
-## í³Š Semaine actuelle : 1/4
-**Focus** : Git, Linux, Bases de donnÃ©es
+## ï¿½ï¿½ï¿½ Progression
+- [x] âœ… Structure de base
+- [ ] ï¿½ï¿½ï¿½ CLI fonctionnel
+- [ ] ï¿½ï¿½ï¿½ Base de donnÃ©es
+- [ ] ï¿½ï¿½ï¿½ Interface web
+
+## ï¿½ï¿½ï¿½ Semaine actuelle : 2/4
+**Focus** : Docker, Todo App
 
 ---
 *Projet rÃ©alisÃ© dans le cadre de ma formation alternant dÃ©veloppement web*
