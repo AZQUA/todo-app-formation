@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App - PostgreSQL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Ma Todo List</h1>
+    <div class="input-group">
+      <input type="text" id="taskInput" placeholder="Ajoute une nouvelle tâche..." maxlength="100">
+      <button onclick="addTask()">Ajouter</button>
+    </div>
+    <ul id="todoList"></ul>
+    <p id="errorMsg" style="color: red; display: none;"></p>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
