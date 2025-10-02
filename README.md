@@ -14,6 +14,8 @@ Application TodoList créée pendant ma formation alternant web.
 # Version terminal (Semaine 1)
 node cli.js add "Ma première tâche"
 node cli.js list
+node cli.js done "<id>"
+node cli.js delete "<id>"
 ```
 
 ## Technologies
@@ -30,7 +32,7 @@ Utilise Commander.js pour parsing robuste + confirmation delete.
 
 ## ��� Progression
 - [x] ✅ Structure de base
-- [ ] ��� CLI fonctionnel
+- [x] ��� CLI fonctionnel
 - [ ] ��� Base de données
 - [ ] ��� Interface web
 
